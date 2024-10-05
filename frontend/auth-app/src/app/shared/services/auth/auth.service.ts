@@ -22,7 +22,7 @@ export class AuthService {
 
   login(body: any): Observable<any> {
     return this.http
-      .post<any>(`${this.apiBaseUrl}/Users/Login`, body)
+      .post<any>(`${this.apiBaseUrl}/auth/login`, body)
       .pipe(
         tap({
           next: ({ token }) => {
@@ -36,9 +36,11 @@ export class AuthService {
     this.storageService.cleanLocal();
     this.router.navigate(['/login']);
   }
+
   token() {
     return this.storageService.returnTokenLocal<string>(IEStorageKey.TOKEN);
   }
+
   tokenPayload() {
     const token = this.storageService.returnTokenLocal<string>(IEStorageKey.TOKEN);
     if (!token) {
@@ -48,6 +50,7 @@ export class AuthService {
     const tokenPayload: any = jwtDecode(token);
     return tokenPayload;
   }
+
   currentUser() {
     const tokenData = this.tokenPayload();
     if (!tokenData) {
@@ -55,11 +58,11 @@ export class AuthService {
     }
 
     const user = {
-      id: tokenData.id,
-      name: tokenData.name,
-      email: tokenData.email,
-      localName: tokenData.localName,
-      role: tokenData.role,
+      id: tokenData?.id,
+      name: tokenData?.name,
+      email: tokenData?.email,
+      localName: tokenData?.localName,
+      role: tokenData?.role,
     };
     return user;
   }
@@ -74,7 +77,7 @@ export class AuthService {
     }
 
     const isNow = moment();
-    const dateExpiration = moment.unix(tokenData.exp);
+    const dateExpiration = moment.unix(tokenData?.exp);
     const isExpired = isNow.isSameOrAfter(dateExpiration);
 
     if (isExpired) {
@@ -86,7 +89,7 @@ export class AuthService {
 
   isAuthenticatedAndAdmin() {
     const tokenData = this.tokenPayload();
-    if (!tokenData || tokenData == undefined || tokenData.role !== 'Admin') {
+    if (!tokenData || tokenData == undefined || tokenData?.role !== 'Admin') {
       this.logout();
       return false;
     }
