@@ -1,0 +1,229 @@
+<div class="custom-field" [ngStyle]="{'margin-top': title ? '10px' : '0'}">
+  @if (showTitle) {
+    <label>{{ title }}</label>
+  }
+
+  @if (type === 'text') {
+    <ng-container>
+      <mat-form-field class="custom-field__input">
+        <input matInput
+               [formControl]="formControl"
+               [mask]="mask"
+               type="text"
+               name="{{formControl}}"
+               (keyup)="onChangeValue($event)"
+               [placeholder]="placeholder"
+               [(ngModel)]="value"
+               [maxlength]="maxlength"
+               />
+        @if(formControl.invalid || showErrorsWhen){
+          <mat-error *ngFor="let error of control.errors | keyvalue">
+            {{getErrorMessage(error.key)}}
+          </mat-error>
+         }
+      </mat-form-field>
+    </ng-container>
+  }
+  @if (type === 'search') {
+  <ng-container>
+    <mat-form-field class="custom-field__input">
+      <input matInput type="search" name="{{formControl}}" (keyup)="onChangeValue($event)" [(ngModel)]="value" [placeholder]="placeholder"/>
+    </mat-form-field>
+  </ng-container>
+  }
+  @if (type === 'password') {
+  <ng-container>
+    <mat-form-field class="custom-field__input">
+      <input matInput [formControl]="formControl" [mask]="mask" [type]="hide ? 'password' : 'text'"  name="{{formControl}}"
+        [placeholder]="placeholder" [(ngModel)]="value" />
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      @if( formControl.invalid || showErrorsWhen){
+      <mat-error *ngFor="let error of control.errors | keyvalue">{{getErrorMessage(error.key)}}</mat-error>
+      }
+
+    </mat-form-field>
+  </ng-container>
+  }
+  @if (type === 'email') {
+  <ng-container>
+    <mat-form-field class="custom-field__input">
+      <input matInput [formControl]="formControl" [mask]="mask" type="email" name="{{formControl}}"
+        [placeholder]="placeholder" [(ngModel)]="value" />
+      @if( formControl.invalid || showErrorsWhen){
+      <mat-error *ngFor="let error of control.errors | keyvalue">{{getErrorMessage(error.key)}}</mat-error>
+      }
+    </mat-form-field>
+  </ng-container>
+  }
+  @if (type === 'number') {
+  <ng-container>
+    <mat-form-field class="custom-field__input">
+      <input [formControl]="formControl" matInput [mask]="mask" min="0" [maxlength]="maxSizeNumber" type="number"
+        name="{{formControl}}" [placeholder]="placeholder" [(ngModel)]="value" />
+      @if( formControl.invalid || showErrorsWhen){
+      <mat-error *ngFor="let error of control.errors | keyvalue">{{getErrorMessage(error.key)}}</mat-error>
+      }
+    </mat-form-field>
+  </ng-container>
+  }
+  @if(type === 'dropdown') {
+  <ng-container>
+    <mat-form-field>
+      <mat-select [formControl]="formControl" [(ngModel)]="selectedOption"
+        (selectionChange)="onOptionSelected($event.value)" placeholder="{{ placeholder }}">
+        @for(option of options; track option) {
+        <mat-option [value]="option.id">
+          <div class="color-option">
+            @if(option.colors) {
+              <div class="color-box" [style.background-color]="option.colors">&nbsp;</div>
+            }
+            <span>{{ option.value }}</span>
+          </div>
+        </mat-option>
+        }
+      </mat-select>
+      @if( formControl.invalid || showErrorsWhen){
+      <mat-error *ngFor="let error of control.errors | keyvalue">{{getErrorMessage(error.key)}}</mat-error>
+      }
+    </mat-form-field>
+  </ng-container>
+  }
+  @if(type === 'radio') {
+    <ng-container>
+      <mat-form-field>
+        <mat-label>{{ placeholder }}</mat-label>
+        <mat-radio-group [formControl]="formControl" [(ngModel)]="selectedOption" (change)="onOptionSelected($event.value)">
+          <mat-radio-button *ngFor="let option of options; track option" [value]="option.id">
+            {{ option.value }}
+          </mat-radio-button>
+        </mat-radio-group>
+        @if( formControl.invalid || showErrorsWhen){
+          <mat-error *ngFor="let error of control.errors | keyvalue">{{ getErrorMessage(error.key) }}</mat-error>
+        }
+      </mat-form-field>
+    </ng-container>
+  }
+  @if (type === 'datetime') {
+  <ng-container>
+    <mat-form-field >
+      <input matInput [placeholder]="placeholder" [(ngModel)]="value" [formControl]="formControl" (ngModelChange)="onChangeDatetimeValue($event)"
+        [matDatepicker]="picker" type="datetime" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      @if(showErrorsWhen || formControl.invalid){
+      <mat-error *ngFor="let error of control.errors | keyvalue">{{getErrorMessage(error.key)}}</mat-error>
+      }
+    </mat-form-field>
+  </ng-container>
+  }
+  @if (type === 'datetime-local') {
+    <ng-container>
+      <mat-form-field>
+        <input
+        matInput
+        [placeholder]="placeholder"
+        [(ngModel)]="dateTimeValue"
+        [formControl]="formControl"
+        mask="00/00/0000 00:00"
+        [dropSpecialCharacters]="false"
+        type=""
+
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker (closed)="onDateSelected()"></mat-datepicker>
+      <!-- <mat-icon matSuffix (click)="picker.open()">event</mat-icon> -->
+      <ngx-mat-timepicker-toggle matSuffix [for]="pickerVehicle"></ngx-mat-timepicker-toggle>
+      <ngx-mat-timepicker color="primary" [format]="24" #pickerVehicle (closed)="onTimeSelected()"></ngx-mat-timepicker>
+
+
+        @if(showErrorsWhen || formControl.invalid){
+          <mat-error *ngFor="let error of control.errors | keyvalue">{{getErrorMessage(error.key)}}</mat-error>
+        }
+      </mat-form-field>
+    </ng-container>
+  }
+  <!-- @if (type === 'time') {
+  <ng-container>
+    <mat-form-field>
+      <input matInput
+        name="selected_time_B"
+        [format]="24"
+        [formControl]="formControl"
+        [(ngModel)]="value"
+        [ngxMatTimepicker]="pickerB"
+        placeholder="{{ placeholder }}"
+        readonly
+      />
+        <mat-icon matSuffix [class.hidden-icon]="hideIcon" (click)="pickerB.open()">schedule</mat-icon>
+        @if( formControl.invalid || showErrorsWhen){
+          <mat-error *ngFor="let error of control.errors | keyvalue">{{getErrorMessage(error.key)}}</mat-error>
+        }
+    </mat-form-field>
+    <ngx-mat-timepicker color="primary" [format]="24" #pickerB></ngx-mat-timepicker>
+  </ng-container>
+  } -->
+
+  @if (type === 'textarea') {
+  <ng-container>
+    <mat-form-field>
+      <textarea matInput [placeholder]="placeholder" [(ngModel)]="value" [formControl]="formControl"
+        type="textarea"></textarea>
+        @if(formControl.invalid || showErrorsWhen){
+          <mat-error *ngFor="let error of control.errors | keyvalue">
+            {{getErrorMessage(error.key)}}
+          </mat-error>
+         }
+    </mat-form-field>
+  </ng-container>
+  } @if (type === 'tel') {
+  <ng-container>
+    <mat-form-field class="custom-field__input">
+      <input matInput [formControl]="formControl" [mask]="mask" name="{{formControl}}" [placeholder]="placeholder"
+        [(ngModel)]="value" type="tel" />
+      @if( formControl.invalid || showErrorsWhen){
+      <mat-error *ngFor="let error of control.errors | keyvalue">{{getErrorMessage(error.key)}}</mat-error>
+      }
+    </mat-form-field>
+  </ng-container>
+  } @if (type === 'selectAndText') {
+  <ng-container>
+    <mat-form-field>
+      <input [type]="subType" matInput [placeholder]="placeholder" [formControl]="formControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </ng-container>
+  } @if (type === 'keyvalue') {
+    <ng-container>
+      <mat-form-field class="custom-field__input">
+        <input
+         name="type"
+         matInput
+         [placeholder]="placeholder"
+         [formControl]="formControl"
+         [matAutocomplete]="autoType"
+         (input)="filterData($event)"
+         (focus)="filterData()"
+         >
+        <button type="button" matSuffix mat-icon-button>
+          <mat-icon aria-hidden="false" aria-label="arrow_drop_down icon" fontIcon="arrow_drop_down" class="icon"></mat-icon>
+        </button>
+        <mat-autocomplete requireSelection #autoType [displayWith]="showDataType!" (optionSelected)="selectOption($event)">
+          <mat-option [value]="null">Selecione</mat-option>
+          @for (type of filteredTypes; track type[keyName]) {
+          <mat-option [value]="type[keyName]">
+            {{ formatSelectItem(type) }}
+          </mat-option>
+          }
+        </mat-autocomplete>
+        @if( formControl.invalid || showErrorsWhen){
+          <mat-error *ngFor="let error of control.errors | keyvalue">{{getErrorMessage(error.key)}}</mat-error>
+        }
+      </mat-form-field>
+
+    </ng-container>
+  }
+</div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
 import { MATERIAL_STYLES } from "./utils";
+import { NgxMaskDirective, NgxMaskPipe } from "ngx-mask";
 
 @NgModule({
   declarations: [],
@@ -11,6 +12,8 @@ import { MATERIAL_STYLES } from "./utils";
     FormsModule,
     ReactiveFormsModule,
     RouterLink,
+    NgxMaskDirective,
+    NgxMaskPipe,
     MATERIAL_STYLES
   ],
   exports: [
@@ -18,6 +21,8 @@ import { MATERIAL_STYLES } from "./utils";
     FormsModule,
     ReactiveFormsModule,
     RouterLink,
+    NgxMaskDirective,
+    NgxMaskPipe,
     MATERIAL_STYLES
   ]
 })

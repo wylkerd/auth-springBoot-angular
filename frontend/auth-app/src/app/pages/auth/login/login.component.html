@@ -1,1 +1,30 @@
-<p>login works!</p>
+<section class="login">
+  <div class="login__left">
+  </div>
+  <div class="login__right">
+      <div class="login__content">
+          <form class="form" [formGroup]="form">
+              <div class="form__description">
+                  <div style="text-align: center;">
+                      <img class="form__description--img" width="80" height="80" src="assets/img/login-background.jpg"
+                          alt="">
+                  </div>
+                  <h1 class="form__description--title">Bem vindo ao <br /> <span>Produtos Gerais</span></h1>
+                  <p class="form__description--description">Por favor, entre com o usuário e senha. </p>
+              </div>
+              <input-component placeholder="Seu usuário" type="text" [control]="fc['email']" />
+
+              <input-component placeholder="Sua senha" type="password" [control]="fc['password']" />
+
+              <a class="form__link" (click)="openForgotPasswordModal()">Esqueci minha senha</a>
+
+              <button type="submit" class="form__btn" (click)="onSubmit()"> Entrar</button>
+
+              <div *ngIf="errorMessage" class="form__message">
+                  <span>{{ errorMessage }}</span>
+              </div>
+          </form>
+          <img class="login__content--img" width="1000" src="assets/img/logo.png" alt="Logo">
+      </div>
+  </div>
+</section>

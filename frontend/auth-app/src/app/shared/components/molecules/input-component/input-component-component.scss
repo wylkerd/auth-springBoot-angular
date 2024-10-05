@@ -1,0 +1,28 @@
+:host {
+  min-width: 194.64px;
+  input {
+    flex: 1 !important;
+  }
+  .custom-field label {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    color: #2B3C57;
+    white-space: nowrap;
+    min-width: 120px;
+  }
+
+  mat-form-field {
+    display: flex;
+    flex-direction: column;
+    .mat-mdc-form-field-infix {
+      min-height: 40px !important;
+    }
+  }
+
+  .hidden-icon {
+    display: none;
+  }
+}

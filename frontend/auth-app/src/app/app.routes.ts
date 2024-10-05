@@ -4,10 +4,10 @@ import { InitialPageComponent } from "./pages/initial-page/initial-page.componen
 import { loginGuard } from "./shared/guards/login.guard";
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'initial', pathMatch: 'full' },
   {
-    path: 'initial',
+    path: 'dashboard',
     component: InitialPageComponent,
     canActivate: [loginGuard],
     canActivateChild: [loginGuard]

@@ -1,0 +1,33 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$ino-primary: mat.define-palette($ino-palette, primary);
+$ino-accent: mat.define-palette($ino-palette, A200, A100, A400);
+$ino-module-configuration: mat.define-palette($ino-palette, primary-configuration);
+$ino-module-schedule: mat.define-palette(mat.$red-palette);
+$ino-module-block: mat.define-palette($ino-palette, primary-block);
+$ino-module-jorney: mat.define-palette($ino-palette, primary-jorney);
+$ino-module-monitoring: mat.define-palette($ino-palette, primary-monitoring);
+$ino-module-tutorial: mat.define-palette($ino-palette, primary-tutorial);
+$ino-warn: mat.define-palette(mat.$red-palette);
+
+$ino-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $ino-primary,
+      primary-configuration: $ino-module-configuration, 
+      primary-schedule: $ino-module-schedule, 
+      primary-block: $ino-module-block, 
+      primary-jorney: $ino-module-jorney, 
+      primary-monitoring: $ino-module-monitoring, 
+      primary-tutorial: $ino-module-tutorial, 
+      warn: $ino-warn,
+      accent: $ino-accent,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0
+  )
+);
+
+@include mat.all-component-themes($ino-theme);

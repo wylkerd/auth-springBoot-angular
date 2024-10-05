@@ -1,0 +1,135 @@
+@import 'styles/style.scss';
+
+:host {
+
+  .login {
+    display: flex;
+    min-width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #FBFCFD;
+    @include mq(md) {
+      justify-content: center;
+      padding: 3rem 0;
+    }
+    &__left {
+      width: 50%;
+      height: auto;
+      background: url('assets/img/login-background.jpg') no-repeat center center !important;
+      background-size: cover !important;
+      @media (width < 901px) {
+        display: none;
+      }
+    }
+
+    &__right {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+      @media (width < 901px) {
+        width: 100%;
+      }
+      @include mq(md) {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      .login__content {
+        @include mq(sm) {
+          margin: 0 1.5rem;
+        }
+        .form {
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #E2E2E2;
+          padding: 3rem 2.5rem;
+          text-align: start;
+          width: auto;
+          min-width: 400px;
+          border-radius: 10px;
+          label {
+            font-weight: 600;
+          }
+          @include mq(sm) {
+            min-width: 280px;
+            padding: 2rem 1.5rem;
+          }
+          &__field {
+            margin-top: .5rem;
+          }
+          &__description {
+            &--title {
+              color: #2B3C57;
+              font-weight: 500;
+              font-size: 24px;
+              line-height: 30px;
+              margin-top: 1rem;
+              text-align: center;
+              span {
+                font-weight: 700;
+              }
+            }
+          }
+          &__description {
+            color: #949494;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 40px;
+            text-align: center;
+            margin-bottom: 1rem;
+          }
+          &__input,
+          &__btn {
+            height: 40px;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          }
+
+          &__btn {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+
+            &:hover {
+              background-color: darken(#007bff, 10%);
+            }
+          }
+
+          .form__link {
+            color: #007bff;
+            text-decoration: none;
+            text-align: right;
+            display: block;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            text-decoration: underline;
+          }
+          .form__message {
+            color: #E17272;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 40px;
+            text-align: center;
+          }
+        }
+
+        .login__content--img {
+          display: block;
+          text-align: center;
+          margin: 1rem auto 0;
+          height: 80px;
+          width: 80px;
+        }
+      }
+    }
+  }
+}
+.bold {
+  font-size: 700;
+}
+
+$screen-xs: 0 !default;

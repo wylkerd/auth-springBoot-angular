@@ -1,0 +1,27 @@
+<div class="upper">
+  <div class="upper__left">
+    @if(showOnlyTitle) {
+      <p class="upper__left--title">{{title}} <b class="upper__left--title--destaque">{{ boldTitle }}</b></p>
+    } @else {
+      @if (showBackBtn) {
+        <a (click)="goBack()" class="upper__left--voltar">
+          <img class="navigation__top--img" width="6" height="9" src="assets/img/voltar.png" alt="">
+          <p>Voltar</p>
+        </a>
+      }
+      @if(!showBackBtn) {
+        <a routerLink="/modules/" class="upper__left--voltar">
+          <img class="navigation__top--img" width="6" height="9" src="assets/img/voltar.png" alt="">
+          <p>Voltar</p>
+        </a>
+      }
+      <p class="upper__left--title">{{title}} <b class="upper__left--title--destaque">{{ boldTitle }}</b></p>
+    }
+  </div>
+
+  <div class="upper__auxiliar" [ngStyle]="customAuxiliarButtonStyle">
+    @if (showAuxiliarButton) {
+      <ng-content></ng-content>
+    }
+  </div>
+</div>

@@ -1,0 +1,66 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+$screen-xs: 0 !default;
+$screen-sm: 576px !default;
+$screen-md: 768px !default;
+$screen-lg: 992px !default;
+$screen-xl: 1200px !default;
+
+$breakpoints: (
+  'xs': $screen-xs,
+  'sm': $screen-sm,
+  'md': $screen-md,
+  'lg': $screen-lg,
+  'xl': $screen-xl
+);
+$f-secondary: "Nunito", sans-serif;
+$black: #000000;
+$white: #FFFFFF;
+$primary: #2b3c57;
+$module-configuration: #d65135;
+$module-schedule: #18A6BE;
+$module-block: #feb961;
+$module-jorney: #da41a4;;
+$module-monitoring: #3c96d9;;
+$module-tutorial: #9442d4;
+
+$ino-palette: (
+  primary: $primary,
+  primary-configuration: $module-configuration,
+  primary-schedule: $module-schedule,
+  primary-block: $module-block,
+  primary-jorney: $module-jorney,
+  primary-monitoring: $module-monitoring,
+  primary-tutorial: $module-tutorial,
+  50 : #e1edff,
+  100 : #b3d2ff,
+  200 : #81b4ff,
+  300 : #4f96ff,
+  400 : #2980ff,
+  500 : #2980ff,
+  600 : #0361ff,
+  700 : #0256ff,
+  800 : #024cff,
+  900 : #013bff,
+  A100 : #4B5970,
+  A200 : #2980ff,
+  A400 : #26364F,
+  A700 : #202E46,
+  contrast: (
+    50 : $black,
+    100 : $black,
+    200 : $black,
+    300 : $black,
+    400 : $white,
+    500 : $white,
+    600 : $white,
+    700 : $white,
+    800 : $white,
+    900 : $white,
+    A100 : $black,
+    A200 : $black,
+    A400 : $black,
+    A700 : $black,
+    )
+);

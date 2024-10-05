@@ -7,7 +7,7 @@ import { Observable, tap } from 'rxjs';
 import moment from 'moment';
 import { UserService } from '../user/user.service';
 import { IEStorageKey } from "../../interfaces";
-import { environment } from "../../../../environments/environment";
+import { environment } from "environments/environment";
 
 @Injectable({
   providedIn: 'root'

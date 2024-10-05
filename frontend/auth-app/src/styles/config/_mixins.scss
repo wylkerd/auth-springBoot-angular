@@ -1,0 +1,22 @@
+@import './variables';
+@mixin mq($width, $type: max) {
+    @if map_has_key($breakpoints, $width) {
+      $width: map_get($breakpoints, $width);
+    }
+  
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+}
+
+@mixin defaultBtnValues($color) {
+  background-color: $color;
+  color: white;
+  cursor: pointer;
+  border: none;
+  margin-right: 2px;
+
+  &:hover {
+    background-color: darken($color, 10%);
+  }
+}

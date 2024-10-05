@@ -30,11 +30,14 @@
                 "input": "public"
               }
             ],
+            "inlineStyleLanguage": "scss",
             "styles": [
-              "src/custom-theme.scss",
-              "src/styles.css"
+              "src/styles/style.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "moment"
+            ]
           },
           "configurations": {
             "production": {
